@@ -2,17 +2,20 @@
 
 class clickCaptcha {
 	
-	private $salt = 'sdfs8d6f9sd6f97s80df8s6d8f89f8sdfs7adtf79tasd76ftsd7a69tf79rasd68rtg79hgfsd8yhn68dftrg68tfasd7nb79';
+	private const SALT = 'sdfs8d6f9sd6f97s80df8s6d8f89f8sdfs7adtf79tasd76ftsd7a69tf79rasd68rtg79hgfsd8yhn68dftrg68tfasd7nb79';
 	
-	private $rows = 10;
-	private $cols = 16;
-	private $dotSize = 20;
-	private $distractors = 10;
-	private $confetti = 300;
-	private $fettiWidth = 8;
-	private $fettiHeight = 1.2;
+	private const ROWS = 10;
+	private const COLS = 16;
+	private const DOTSIZE = 20;
+	private const DISTRACTORS = 10;
+	private const CONFETTI = 300;
+	private const FETTIWIDTH = 8;
+	private const FETTIHEIGHT = 1.2;
 
-	public function __construct() {}
+	private $salt = self::SALT;
+	
+	public function __construct() {
+	}
 	
 	public function compare() {
 		if( isset( $_POST['h'] , $_POST['x'] , $_POST['y'] ) ) {
@@ -91,7 +94,7 @@ class clickCaptcha {
 
 		$hsv = array(0,1.0,1.0);
 		$hsv[0] = (rand() / getrandmax()) * 0.20 + 0.80;
-	    $color = HSVtoRGB($hsv);
+	    $color = $this->HSVtoRGB($hsv);
 	    $imgColor = imagecolorallocate($img,intval($color[0]*255.0),intval($color[1]*255.0),intval($color[2]*255.0));
 		imagefilledarc ($img, $x, $y, $s, $s, 0, 360, $imgColor, IMG_ARC_PIE);
 
@@ -125,7 +128,7 @@ class clickCaptcha {
 		    $cy = rand(0,$h);
 		    $theta = 3.1415926513 * (rand() / getrandmax());
 		    $hsv[0] = (rand() / getrandmax()) * 0.70;
-		    $color = HSVtoRGB($hsv);
+		    $color = $this->HSVtoRGB($hsv);
 			
 			$c = cos($theta);
 			$s = sin($theta);
@@ -178,12 +181,12 @@ class clickCaptcha {
 		return $imdata;
 	}
 
-	private function generateImage($cols=$this->cols,$rows=$this->rows,$dotSize=$this->dotSize,$distractors=$this->distractors,
-						   $confetti=$this->confetti,$fettiWidth=$this->fettiWidth,$fettiHeight=$this->fettiHeight,$salt=$this->salt)
+	private function generateImage($cols=self::COLS,$rows=self::ROWS,$dotSize=self::DOTSIZE,$distractors=self::DISTRACTORS,
+						   $confetti=self::CONFETTI,$fettiWidth=self::FETTIWIDTH,$fettiHeight=self::FETTIHEIGHT,$salt=self::SALT)
 	{
 		$x = mt_rand( 0, $cols-1 );
 		$y = mt_rand( 0, $rows-1 );
-		$imdata = createImage($x*$dotSize+$dotSize*0.5,
+		$imdata = $this->createImage($x*$dotSize+$dotSize*0.5,
 			                  $y*$dotSize+$dotSize*0.5,
 			                  $dotSize,
 			                  $cols*$dotSize,
