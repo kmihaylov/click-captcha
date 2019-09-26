@@ -5,6 +5,30 @@ URLGenerate = "generateCaptcha.php";
 URLSubmit = "compare.php";
 divStr = 'Click the circle<input type="image" id="captcha_image" src="data:image/png;base64,';
 
+var start = 0;
+
+function onCaptchaSuccess()
+{
+	// User succeeded in their attempt to click the target
+	document.getElementById("textBox").innerHTML = "YOU'RE HUMAN!";
+}
+
+function onCaptchaFailed()
+{
+	// User failed in their attempt to click the target
+	start = new Date().getTime();
+	requestNewCaptcha();
+
+	document.getElementById("textBox").innerHTML = "Loading...";
+}
+
+function onNewCaptcha()
+{
+	// Requests a new base64 CAPTCHA image from the server
+	var elapsed = new Date().getTime() - start;
+	document.getElementById("textBox").innerHTML = "Image generated in " + elapsed / 1000.0 + " sec";
+}
+
 function createRequestObject() {
   var ro;
 
