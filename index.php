@@ -3,9 +3,8 @@
 	<head>
 		<title>Click CAPTCHA Demo</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
-        <?php include('clickCaptcha.php'); ?>  
 	</head>
-	<body onload="initCaptcha()"> <!-- initializes the CAPTCHA on load -->
+	<body onload="onCaptchaFailed()"> <!-- initializes the CAPTCHA on load -->
 
 	<div id="captcha"></div>  <!-- The click-CAPTCHA module is placed in here -->
 
