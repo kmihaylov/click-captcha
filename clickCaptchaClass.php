@@ -28,10 +28,12 @@ class clickCaptcha {
 			if( $refHash == $attempt )
 			{
 				print 'TRUE';
+				return;
 			}
 			else
 			{
 				print 'FALSE';
+				return;
 			}
 		}
 		echo "false";
