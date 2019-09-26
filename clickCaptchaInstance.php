@@ -8,5 +8,8 @@ if( isset($_GET['compare'] ) ) {
 	$clickObj->compare();
 }
 
+if( isset( $_GET['generate'] ) ) {
+	$clickObj->generate();
+}
 
 ?>
