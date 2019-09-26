@@ -1,4 +1,10 @@
 <?php
+/*
+* Click CAPTCHA 0.1.1
+* Created by Jonathan Decker
+* 
+* Organized in class by Kaloyan Mihaylov
+*/
 
 class clickCaptcha {
 	
