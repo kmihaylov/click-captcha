@@ -3,6 +3,14 @@
 class clickCaptcha {
 	
 	private $salt = 'sdfs8d6f9sd6f97s80df8s6d8f89f8sdfs7adtf79tasd76ftsd7a69tf79rasd68rtg79hgfsd8yhn68dftrg68tfasd7nb79';
+	
+	private $rows = 10;
+	private $cols = 16;
+	private $dotSize = 20;
+	private $distractors = 10;
+	private $confetti = 300;
+	private $fettiWidth = 8;
+	private $fettiHeight = 1.2;
 
 	public function __construct() {}
 	
@@ -27,14 +35,6 @@ class clickCaptcha {
 	}
 	
 	// generateCaptcha.php
-	
-	$rows = 10;
-	$cols = 16;
-	$dotSize = 20;
-	$distractors = 10;
-	$confetti = 300;
-	$fettiWidth = 8;
-	$fettiHeight = 1.2;
 
 	function HSVtoRGB(array $hsv) 
 	{
@@ -178,7 +178,8 @@ class clickCaptcha {
 		return $imdata;
 	}
 
-	function generateImage($cols,$rows,$dotSize,$distractors,$confetti,$fettiWidth,$fettiHeight,$salt)
+	function generateImage($cols=$this->cols,$rows=$this->rows,$dotSize=$this->dotSize,$distractors=$this->distractors,
+						   $confetti=$this->confetti,$fettiWidth=$this->fettiWidth,$fettiHeight=$this->fettiHeight,$salt=$this->salt)
 	{
 		$x = mt_rand( 0, $cols-1 );
 		$y = mt_rand( 0, $rows-1 );
