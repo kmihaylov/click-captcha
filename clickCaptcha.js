@@ -1,8 +1,8 @@
 // Click CAPTCHA 0.1.1
 // Created by Jonathan Decker
 
-URLGenerate = "generateCaptcha.php";
-URLSubmit = "compare.php";
+URLGenerate = "clickCaptchaInstance.php?generate";
+URLSubmit = "clickCaptchaInstance.php?compare";
 divStr = 'Click the circle<input type="image" id="captcha_image" src="data:image/png;base64,';
 
 var start = 0;
