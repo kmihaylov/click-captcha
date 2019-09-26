@@ -6,6 +6,7 @@ URLSubmit = "clickCaptchaInstance.php?compare";
 divStr = 'Click the circle<input type="image" id="captcha_image" src="data:image/png;base64,';
 
 var start = 0;
+var dotSize = 0;
 
 function onCaptchaSuccess()
 {
@@ -114,7 +115,8 @@ function handleGenerateResponse()
 		var obj = eval("(" + http.responseText + ')');
 
 	    targetHash = obj.targetHash;
-	    imgData = obj.imgData;	
+	    imgData = obj.imgData;
+		dotSize = obj.dotSize;
 	    count_misses = 0;
 
 		divele = document.getElementById("captcha");

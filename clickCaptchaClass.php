@@ -196,7 +196,7 @@ class clickCaptcha {
 
 		$targetHash = sha1( "$x:$y:$salt" );
 
-		return array($imdata,$targetHash);
+		return array($imdata,$targetHash,$dotSize);
 	}
 	
 	public function generate() {
@@ -204,8 +204,9 @@ class clickCaptcha {
 
 		$imgData = $retdata[0];
 		$targetHash = $retdata[1];
+		$dotSize = $retdata[2];
 
-		print '{ "imgData" : "' . $imgData . '", "targetHash" : "' . $targetHash . '" }';
+		print '{ "imgData" : "' . $imgData . '", "targetHash" : "' . $targetHash . '", "dotSize" : "' . $dotSize . '" }';
 	}
 	
 }
