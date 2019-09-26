@@ -36,7 +36,7 @@ class clickCaptcha {
 	
 	// generateCaptcha.php
 
-	function HSVtoRGB(array $hsv) 
+	private function HSVtoRGB(array $hsv) 
 	{
 	    list($H,$S,$V) = $hsv;
 
@@ -73,7 +73,7 @@ class clickCaptcha {
 	    return array($R, $G, $B);
 	}
 
-	function rotate2D( $v, $theta )
+	private function rotate2D( $v, $theta )
 	{
 		$temp = array(0,0);
 		$c = cos($theta);
@@ -85,7 +85,7 @@ class clickCaptcha {
 		return $temp;
 	}
 
-	function createImage($x,$y,$s,$w,$h,$distractors,$confetti,$fettiWidth,$fettiHeight) { 
+	private function createImage($x,$y,$s,$w,$h,$distractors,$confetti,$fettiWidth,$fettiHeight) { 
 		$img = imagecreatetruecolor($w,$h); 
 		imagefill($img, 0, 0, imagecolorallocate($img,64,64,64)); 
 
@@ -178,7 +178,7 @@ class clickCaptcha {
 		return $imdata;
 	}
 
-	function generateImage($cols=$this->cols,$rows=$this->rows,$dotSize=$this->dotSize,$distractors=$this->distractors,
+	private function generateImage($cols=$this->cols,$rows=$this->rows,$dotSize=$this->dotSize,$distractors=$this->distractors,
 						   $confetti=$this->confetti,$fettiWidth=$this->fettiWidth,$fettiHeight=$this->fettiHeight,$salt=$this->salt)
 	{
 		$x = mt_rand( 0, $cols-1 );
@@ -194,6 +194,15 @@ class clickCaptcha {
 		$targetHash = sha1( "$x:$y:$salt" );
 
 		return array($imdata,$targetHash);
+	}
+	
+	public function generate() {
+		$retdata = $this->generateImage();
+
+		$imgData = $retdata[0];
+		$targetHash = $retdata[1];
+
+		print '{ "imgData" : "' . $imgData . '", "targetHash" : "' . $targetHash . '" }';
 	}
 	
 }
