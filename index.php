@@ -3,6 +3,7 @@
 	<head>
 		<title>Click CAPTCHA Demo</title>
 		<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+		<script src="clickCaptcha.js"></script>
 	</head>
 	<body onload="onCaptchaFailed()"> <!-- initializes the CAPTCHA on load -->
 
